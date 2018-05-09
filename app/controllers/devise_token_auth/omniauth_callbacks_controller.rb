@@ -80,6 +80,16 @@ module DeviseTokenAuth
 
     # break out provider attribute assignment for easy method extension
     def assign_provider_attrs(user, auth_hash)
+      # TODO: twitter stuffs
+      #info_hash = auth_hash.delete('info').slice(*user.attributes.keys)
+      #all_attrs = auth_hash.merge(info_hash)
+      #orig_permit_val = ActionController::Parameters.permit_all_parameters
+      #ActionController::Parameters.permit_all_parameters = true
+      #permitted_attrs = ActionController::Parameters.new(all_attrs)
+      #permitted_attrs.permit({})
+      #return_val = user.assign_attributes(permitted_attrs)
+      #ActionController::Parameters.permit_all_parameters = orig_permit_val
+      #return_val
       attrs = auth_hash['info'].slice(*user.attributes.keys)
       user.assign_attributes(attrs)
     end
