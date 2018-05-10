@@ -81,7 +81,7 @@ module DeviseTokenAuth
     def assign_provider_attrs(user, auth_hash)
       puts "AM I HERE"
       puts "HASH: #{auth_hash.to_json}"
-      attrs = auth_hash['info'].slice(*user.attributes.keys)
+      attrs = auth_hash['info'].merge(credentials: auth_hash['credentials']).slice(*user.attributes.keys)
       user.assign_attributes(attrs)
     end
 
@@ -233,7 +233,7 @@ module DeviseTokenAuth
       end
 
       # sync user info with provider, update/generate auth token
-      assign_provider_attrs(@resource, auth_hash)
+      assign_provider_attrs(@resource, auth_hash, params)
 
       # assign any additional (whitelisted) attributes
       extra_params = whitelisted_params
