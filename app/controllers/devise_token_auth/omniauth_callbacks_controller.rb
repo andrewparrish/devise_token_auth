@@ -233,7 +233,7 @@ module DeviseTokenAuth
       end
 
       # sync user info with provider, update/generate auth token
-      assign_provider_attrs(@resource, auth_hash, params)
+      assign_provider_attrs(@resource, auth_hash)
 
       # assign any additional (whitelisted) attributes
       extra_params = whitelisted_params
